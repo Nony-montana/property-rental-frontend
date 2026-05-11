@@ -40,12 +40,13 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("token", tokenData);
   };
 
-  const getDashboardRoute = (role) => {
-    if (role === "LANDLORD") return "/landlord-dashboard";
-    if (role === "BUY") return "/buyer-dashboard";
-    if (role === "RENT") return "/tenant-dashboard";
-    return "/";
-  };
+ const getDashboardRoute = (role) => {
+  if (role === "LANDLORD") return "/landlord-dashboard";
+  if (role === "BUY") return "/buyer-dashboard";
+  if (role === "RENT") return "/tenant-dashboard";
+  if (role === "ADMIN") return "/admin/dashboard";
+  return "/";
+ };
 
   const logout = () => {
     setUser(null);

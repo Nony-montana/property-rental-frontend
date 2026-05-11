@@ -1,25 +1,30 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthContext } from './context/AuthContext';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import PropertyDetails from './pages/PropertyDetails';
-import AddProperty from './pages/AddProperty';
-import LandlordDashboard from './pages/LandlordDashboard';
-import TenantDashboard from './pages/TenantDashboard';
-import BuyerDashboard from './pages/BuyerDashboard';
-import ChatPage from './pages/ChatPage';
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import PropertyDetails from "./pages/PropertyDetails";
+import AddProperty from "./pages/AddProperty";
+import LandlordDashboard from "./pages/LandlordDashboard";
+import TenantDashboard from "./pages/TenantDashboard";
+import BuyerDashboard from "./pages/BuyerDashboard";
+import ChatPage from "./pages/ChatPage";
+import Footer from "./components/Footer";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminProperties from "./pages/admin/AdminProperties";
 
 function App() {
   const { loading } = useContext(AuthContext);
 
-  if (loading) return (
-    <div className="text-center mt-5">
-      <div className="spinner-border" style={{ color: '#1A2E4A' }}></div>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border" style={{ color: "#1A2E4A" }}></div>
+      </div>
+    );
 
   return (
     <Router>
@@ -35,8 +40,12 @@ function App() {
           <Route path="/tenant-dashboard" element={<TenantDashboard />} />
           <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
           <Route path="/chats" element={<ChatPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/properties" element={<AdminProperties />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }
