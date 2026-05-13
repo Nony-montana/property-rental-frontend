@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaArrowLeft, FaComments } from 'react-icons/fa';
+import { FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaArrowLeft, FaComments, FaShieldAlt } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import API from '../utils/api';
 
@@ -247,6 +247,13 @@ const PropertyDetails = () => {
               className="mt-3 p-3"
               style={{ backgroundColor: 'var(--light)', borderRadius: '8px' }}>
               <h6 style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Contact Landlord</h6>
+              {property.landlord?.isVerified && (
+  <span
+    className="badge d-inline-flex align-items-center gap-1 mb-2"
+    style={{ backgroundColor: '#28a745', fontSize: '0.8rem' }}>
+    <FaShieldAlt size={10} /> Verified Landlord
+  </span>
+)}
               <p className="d-flex align-items-center gap-2 mb-1" style={{ color: 'var(--text-light)' }}>
                 <FaEnvelope color="#F5A623" /> {property.landlord.email}
               </p>

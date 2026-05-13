@@ -16,6 +16,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminProperties from "./pages/admin/AdminProperties";
 import { useLocation } from 'react-router-dom';
+import EditProperty from './pages/EditProperty';
 
 function AppContent() {
   const { loading } = useContext(AuthContext);
@@ -45,6 +46,7 @@ function AppContent() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/properties" element={<AdminProperties />} />
+          <Route path="/edit-property/:id" element={<EditProperty />} />
         </Routes>
       </div>
       {!isAdminPage && <Footer />}
