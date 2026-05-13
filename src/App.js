@@ -15,21 +15,23 @@ import Footer from "./components/Footer";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminProperties from "./pages/admin/AdminProperties";
+import { useLocation } from 'react-router-dom';
 
-function App() {
+function AppContent() {
   const { loading } = useContext(AuthContext);
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
 
-  if (loading)
-    return (
-      <div className="text-center mt-5">
-        <div className="spinner-border" style={{ color: "#1A2E4A" }}></div>
-      </div>
-    );
+  if (loading) return (
+    <div className="text-center mt-5">
+      <div className="spinner-border" style={{ color: '#1A2E4A' }}></div>
+    </div>
+  );
 
   return (
-    <Router>
-      <Navbar />
-      <div className="container mt-4">
+    <>
+      {!isAdminPage && <Navbar />}
+      <div className={isAdminPage ? '' : 'container mt-4'}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -45,7 +47,15 @@ function App() {
           <Route path="/admin/properties" element={<AdminProperties />} />
         </Routes>
       </div>
-      <Footer />
+      {!isAdminPage && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

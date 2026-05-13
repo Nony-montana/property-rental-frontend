@@ -26,31 +26,31 @@ const Navbar = () => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-  if (!user) {
-    setUnreadCount(0);
-    socket.off('receive_message');
-    return;
-  }
-
-  const fetchUnreadCount = async () => {
-    try {
-      const res = await API.get('/chats/unread-count');
-      setUnreadCount(res.data.count);
-    } catch (err) {
-      console.log(err);
+    if (!user) {
+      setUnreadCount(0);
+      socket.off('receive_message');
+      return;
     }
-  };
 
-  fetchUnreadCount();
+    const fetchUnreadCount = async () => {
+      try {
+        const res = await API.get('/chats/unread-count');
+        setUnreadCount(res.data.count);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-  socket.on('receive_message', () => {
     fetchUnreadCount();
-  });
 
-  return () => {
-    socket.off('receive_message');
-  };
-}, [user, location.pathname]);
+    socket.on('receive_message', () => {
+      fetchUnreadCount();
+    });
+
+    return () => {
+      socket.off('receive_message');
+    };
+  }, [user, location.pathname]);
 
   const handleLogout = () => {
     logout();
@@ -65,6 +65,8 @@ const Navbar = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
   };
+
+  const showDashboard = user && (user.role === 'LANDLORD' || user.role === 'ADMIN');
 
   return (
     <nav style={{ backgroundColor: 'var(--primary)' }} className="py-3 px-4">
@@ -84,7 +86,7 @@ const Navbar = () => {
             <FaHome /> Home
           </Link>
 
-          {user && (
+          {user && user.role !== 'ADMIN' && (
             <Link
               to="/chats"
               className="d-flex align-items-center gap-1"
@@ -141,7 +143,7 @@ const Navbar = () => {
                   minWidth: '160px',
                   zIndex: 1000,
                 }}>
-                  {user.role === 'LANDLORD' && (
+                  {showDashboard && (
                     <button
                       onClick={handleDashboard}
                       style={{
@@ -156,7 +158,7 @@ const Navbar = () => {
                         cursor: 'pointer',
                         borderBottom: '1px solid var(--light)'
                       }}>
-                      Dashboard
+                      {user.role === 'ADMIN' ? 'Admin Panel' : 'Dashboard'}
                     </button>
                   )}
                   <button
@@ -220,7 +222,7 @@ const Navbar = () => {
             <FaHome /> Home
           </Link>
 
-          {user && (
+          {user && user.role !== 'ADMIN' && (
             <Link
               to="/chats"
               onClick={() => setMenuOpen(false)}
@@ -248,12 +250,12 @@ const Navbar = () => {
 
           {user ? (
             <>
-              {user.role === 'LANDLORD' && (
+              {showDashboard && (
                 <button
                   onClick={handleDashboard}
                   className="d-flex align-items-center gap-2 py-2 w-100"
                   style={{ backgroundColor: 'transparent', border: 'none', color: 'var(--accent)', fontWeight: '500', padding: '8px 0' }}>
-                  Dashboard
+                  {user.role === 'ADMIN' ? 'Admin Panel' : 'Dashboard'}
                 </button>
               )}
               <button

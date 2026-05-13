@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaBed, FaBath, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaBed, FaBath, FaMapMarkerAlt, FaShieldAlt } from 'react-icons/fa';
 
 const PropertyCard = ({ property }) => {
   return (
@@ -39,12 +39,21 @@ const PropertyCard = ({ property }) => {
       {/* CARD BODY */}
       <div className="card-body" style={{ backgroundColor: 'var(--white)' }}>
 
-        {/* PROPERTY TYPE BADGE */}
-        <span
-          className="badge mb-2"
-          style={{ backgroundColor: 'var(--accent)', color: 'var(--white)' }}>
-          {property.propertyType}
-        </span>
+        {/* BADGES ROW */}
+        <div className="d-flex align-items-center gap-2 mb-2 flex-wrap">
+          <span
+            className="badge"
+            style={{ backgroundColor: 'var(--accent)', color: 'var(--white)' }}>
+            {property.propertyType}
+          </span>
+          {property.landlord?.isVerified && (
+            <span
+              className="badge d-flex align-items-center gap-1"
+              style={{ backgroundColor: '#28a745', color: 'var(--white)', fontSize: '0.75rem' }}>
+              <FaShieldAlt size={10} /> Verified
+            </span>
+          )}
+        </div>
 
         {/* TITLE */}
         <h5 className="card-title" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>

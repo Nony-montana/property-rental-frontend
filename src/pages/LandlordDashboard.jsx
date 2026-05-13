@@ -7,6 +7,7 @@ import {
   FaTrash,
   FaEye,
   FaComments,
+  FaShieldAlt,
 } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import API from "../utils/api";
@@ -80,13 +81,27 @@ const LandlordDashboard = () => {
           backgroundColor: "var(--primary)",
           borderRadius: "12px",
           color: "var(--white)",
-        }}
-      >
+        }}>
         <h3 style={{ color: "var(--accent)" }}>
           <FaHome className="me-2" />
           Welcome, {user?.firstName}!
         </h3>
-        <p className="mb-0">Manage your property listings from here</p>
+        <p className="mb-1">Manage your property listings from here</p>
+
+        {/* VERIFICATION BADGE */}
+        {user?.isVerified ? (
+          <span
+            className="badge d-inline-flex align-items-center gap-1 mt-1"
+            style={{ backgroundColor: '#28a745', fontSize: '0.85rem' }}>
+            <FaShieldAlt size={12} /> Verified 
+          </span>
+        ) : (
+          <span
+            className="badge mt-1"
+            style={{ backgroundColor: 'rgba(255,255,255,0.2)', fontSize: '0.85rem' }}>
+            ⏳ Verification Pending — Contact admin to get verified
+          </span>
+        )}
       </div>
 
       {/* STATS */}
