@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaChartBar, FaUsers, FaHome, FaSignOutAlt } from "react-icons/fa";
+import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -18,6 +19,7 @@ const AdminSidebar = () => {
     { path: "/admin/dashboard", label: "Dashboard", icon: <FaChartBar /> },
     { path: "/admin/users", label: "Users", icon: <FaUsers /> },
     { path: "/admin/properties", label: "Properties", icon: <FaHome /> },
+    { path: '/admin/chats', label: 'Chats', icon: <FaComments /> },
   ];
 
   return (

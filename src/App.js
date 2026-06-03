@@ -15,24 +15,28 @@ import Footer from "./components/Footer";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminProperties from "./pages/admin/AdminProperties";
-import { useLocation } from 'react-router-dom';
-import EditProperty from './pages/EditProperty';
-
+import { useLocation } from "react-router-dom";
+import EditProperty from "./pages/EditProperty";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import ChangePassword from "./pages/ChangePassword";
+import AdminChats from './pages/admin/AdminChats';
 function AppContent() {
   const { loading } = useContext(AuthContext);
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin');
+  const isAdminPage = location.pathname.startsWith("/admin");
 
-  if (loading) return (
-    <div className="text-center mt-5">
-      <div className="spinner-border" style={{ color: '#1A2E4A' }}></div>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border" style={{ color: "#1A2E4A" }}></div>
+      </div>
+    );
 
   return (
     <>
       {!isAdminPage && <Navbar />}
-      <div className={isAdminPage ? '' : 'container mt-4'}>
+      <div className={isAdminPage ? "" : "container mt-4"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -47,6 +51,10 @@ function AppContent() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/properties" element={<AdminProperties />} />
           <Route path="/edit-property/:id" element={<EditProperty />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/admin/chats" element={<AdminChats />} />
         </Routes>
       </div>
       {!isAdminPage && <Footer />}

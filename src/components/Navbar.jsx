@@ -140,7 +140,7 @@ const Navbar = () => {
                   backgroundColor: 'var(--white)',
                   borderRadius: '8px',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-                  minWidth: '160px',
+                  minWidth: '180px',
                   zIndex: 1000,
                 }}>
                   {showDashboard && (
@@ -161,6 +161,30 @@ const Navbar = () => {
                       {user.role === 'ADMIN' ? 'Admin Panel' : 'Dashboard'}
                     </button>
                   )}
+
+                  {/* CHANGE PASSWORD — hidden for admin */}
+                  {user.role !== 'ADMIN' && (
+                    <Link
+                      to="/change-password"
+                      onClick={() => setDropdownOpen(false)}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '10px 16px',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        textAlign: 'left',
+                        color: 'var(--primary)',
+                        fontWeight: '500',
+                        cursor: 'pointer',
+                        borderBottom: '1px solid var(--light)',
+                        textDecoration: 'none',
+                        fontSize: '0.95rem'
+                      }}>
+                      Change Password
+                    </Link>
+                  )}
+
                   <button
                     onClick={handleLogout}
                     style={{
@@ -258,6 +282,18 @@ const Navbar = () => {
                   {user.role === 'ADMIN' ? 'Admin Panel' : 'Dashboard'}
                 </button>
               )}
+
+              {/* CHANGE PASSWORD — hidden for admin */}
+              {user.role !== 'ADMIN' && (
+                <Link
+                  to="/change-password"
+                  onClick={() => setMenuOpen(false)}
+                  className="d-flex align-items-center gap-2 py-2"
+                  style={{ color: 'var(--white)', textDecoration: 'none' }}>
+                  Change Password
+                </Link>
+              )}
+
               <button
                 onClick={handleLogout}
                 className="d-flex align-items-center gap-2 py-2 w-100"

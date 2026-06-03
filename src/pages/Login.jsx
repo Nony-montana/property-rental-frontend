@@ -98,13 +98,12 @@ const Login = () => {
             </button>
           </form>
 
-          <p className="text-center mt-3">
-            Don't have an account?{" "}
+          <p className="text-center mt-2">
             <Link
-              to="/register"
-              style={{ color: "var(--accent)", fontWeight: "500" }}
+              to="/forgot-password"
+              style={{ color: "var(--text-light)", fontSize: "0.9rem" }}
             >
-              Register
+              Forgot your password?
             </Link>
           </p>
         </div>
