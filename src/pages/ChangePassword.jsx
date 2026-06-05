@@ -1,4 +1,4 @@
- import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,11 +9,6 @@ import API from '../utils/api';
 const ChangePassword = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  if (!user) {
-    navigate('/login');
-    return null;
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -50,12 +45,17 @@ const ChangePassword = () => {
     },
   });
 
+  // Guard AFTER all hooks
+  if (!user) {
+    navigate('/login');
+    return null;
+  }
+
   return (
     <div className="row justify-content-center mt-5">
       <div className="col-md-5">
         <div className="card p-4 shadow" style={{ borderRadius: '12px' }}>
 
-          {/* HEADER */}
           <div className="d-flex align-items-center gap-3 mb-4">
             <button
               onClick={() => navigate(-1)}
@@ -81,7 +81,6 @@ const ChangePassword = () => {
 
           <form onSubmit={formik.handleSubmit}>
 
-            {/* CURRENT PASSWORD */}
             <div className="mb-3">
               <label className="form-label d-flex align-items-center gap-2">
                 <FaLock color="var(--accent)" size={14} /> Current Password
@@ -100,7 +99,6 @@ const ChangePassword = () => {
               )}
             </div>
 
-            {/* NEW PASSWORD */}
             <div className="mb-3">
               <label className="form-label d-flex align-items-center gap-2">
                 <FaLock color="var(--accent)" size={14} /> New Password
@@ -119,7 +117,6 @@ const ChangePassword = () => {
               )}
             </div>
 
-            {/* CONFIRM PASSWORD */}
             <div className="mb-3">
               <label className="form-label d-flex align-items-center gap-2">
                 <FaLock color="var(--accent)" size={14} /> Confirm New Password
