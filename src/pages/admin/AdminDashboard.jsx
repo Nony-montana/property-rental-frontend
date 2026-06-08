@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  FaUsers, FaHome, FaChartBar, FaComments, FaUserTie, FaUserCheck
+  FaUsers, FaHome, FaComments, FaUserTie
 } from 'react-icons/fa';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,

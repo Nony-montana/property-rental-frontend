@@ -68,10 +68,6 @@ const Home = () => {
     setCurrentPage(1);
   };
 
-  const handleTypeFilter = (e) => {
-    setTypeFilter(e.target.value);
-    setCurrentPage(1);
-  };
 
   return (
     <div>
