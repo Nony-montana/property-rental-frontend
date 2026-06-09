@@ -1,70 +1,167 @@
-# Getting Started with Create React App
+# 🏠 HomeFind — Nigeria's Property Rental & Sales Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HomeFind is a full-stack web application that connects landlords with tenants and buyers across Nigeria. Landlords can list properties with images, while tenants and buyers can browse, search, filter, and chat with landlords in real time.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌐 Live Demo
 
-### `npm start`
+- **Frontend**: https://property-rental-frontend-rho.vercel.app
+- **Backend**: https://property-rental-backend-vnc5.onrender.com
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+### 👤 Authentication
+- Register as Landlord, Tenant (RENT) or Buyer (BUY)
+- JWT authentication with HTTP-only SameSite cookies
+- Token expiration with automatic logout
+- Forgot password via OTP email
+- Change password for logged-in users
+- Welcome email on registration
+- Deactivated account protection
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🏠 Properties
+- Landlords can list properties with up to 7 images (Cloudinary)
+- Property types: Apartment, House, Duplex, Studio, Self Contain
+- Search by title, city or state
+- Filter by property type
+- Pagination (6 per page)
+- Featured properties pinned to top (admin only)
+- Toggle availability (landlord)
+- Image slider with thumbnails on property details page
+- Verified landlord badge
 
-### `npm run build`
+### 💬 Real-time Chat
+- Tenants and buyers can chat with landlords
+- Socket.io powered real-time messaging
+- Unread message notifications in navbar
+- Chat history persisted in MongoDB
+- Mark messages as read
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🛡️ Admin Panel
+- Dashboard with analytics charts (Recharts)
+  - User registrations by month (Line chart)
+  - Users by role (Pie chart)
+  - Properties by type (Bar chart)
+  - Top states by listings (Bar chart)
+- Manage all users — search, filter by role
+- Activate/Deactivate user accounts
+- Verify landlords (verified badge)
+- Delete users and properties
+- Feature/unfeature properties
+- View all conversations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📧 Email Notifications
+- Professional HTML welcome email on registration
+- OTP email for password reset
+- Powered by Nodemailer + Gmail
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🛠️ Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
+| Technology | Purpose |
+|-----------|---------|
+| React (CRA) | UI framework |
+| React Router DOM | Client-side routing |
+| Axios | API requests |
+| Socket.io Client | Real-time chat |
+| Formik + Yup | Form validation |
+| Bootstrap 5 | Styling |
+| React Icons | Icon library |
+| Recharts | Admin analytics charts |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
+| Technology | Purpose |
+|-----------|---------|
+| Node.js + Express | Server framework |
+| MongoDB + Mongoose | Database |
+| JWT | Authentication |
+| Socket.io | Real-time messaging |
+| Cloudinary + Multer | Image uploads |
+| Nodemailer | Email service |
+| Bcryptjs | Password hashing |
+| Cookie Parser | HTTP-only cookies |
+| OTP Generator | Password reset OTPs |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
+- Node.js v18+
+- MongoDB Atlas account
+- Cloudinary account
+- Gmail account with App Password
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Clone the repo
+git clone https://github.com/Nony-montana/property-rental-backend.git
+cd property-rental-backend/property
 
-### Code Splitting
+# Install dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Create .env file
+cp .env.example .env
+# Fill in your environment variables
 
-### Analyzing the Bundle Size
+# Start development server
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Environment Variables (Backend)
 
-### Making a Progressive Web App
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_MAIL=your_gmail@gmail.com
+NODE_PASS=your_gmail_app_password
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3001
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Frontend Setup
 
-### Advanced Configuration
+```bash
+# Clone the repo
+git clone https://github.com/Nony-montana/property-rental-frontend.git
+cd property-rental-frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Install dependencies
+npm install
 
-### Deployment
+# Create .env file
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_SOCKET_URL=http://localhost:5000
+CI=false
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Start development server
+npm start
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 👥 User Roles
+
+| Role | Permissions |
+|------|------------|
+| **LANDLORD** | List properties, manage listings, chat with tenants/buyers, toggle availability |
+| **RENT** | Browse properties, chat with landlords, search and filter |
+| **BUY** | Browse properties, chat with landlords, search and filter |
+| **ADMIN** | Full access — manage users, properties, view analytics and chats |
+
+---
+
+## 📁 Project Structure
+
+### Backend
