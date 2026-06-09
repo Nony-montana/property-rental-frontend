@@ -14,8 +14,8 @@ const EditProperty = () => {
   const [previews, setPreviews] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!user) {
       navigate("/");

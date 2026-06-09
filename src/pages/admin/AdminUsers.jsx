@@ -14,7 +14,7 @@ const AdminUsers = () => {
   const [roleFilter, setRoleFilter] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
-  
+
 // eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(() => {
   fetchUsers();
