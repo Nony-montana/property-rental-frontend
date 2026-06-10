@@ -3,6 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments, FaClipboardList } from 'react-icons/fa';
+
+
 
 
 const AdminSidebar = () => {
@@ -20,6 +23,7 @@ const AdminSidebar = () => {
     { path: "/admin/users", label: "Users", icon: <FaUsers /> },
     { path: "/admin/properties", label: "Properties", icon: <FaHome /> },
     { path: '/admin/chats', label: 'Chats', icon: <FaComments /> },
+    { path: '/admin/audit-logs', label: 'Audit Logs', icon: <FaClipboardList /> },
   ];
 
   return (

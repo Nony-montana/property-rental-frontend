@@ -21,6 +21,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ChangePassword from "./pages/ChangePassword";
 import AdminChats from './pages/admin/AdminChats';
+import AdminAuditLogs from './pages/admin/AdminAuditLogs';
 function AppContent() {
   const { loading } = useContext(AuthContext);
   const location = useLocation();
@@ -55,6 +56,7 @@ function AppContent() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/admin/chats" element={<AdminChats />} />
+          <Route path="/admin/audit-logs" element={<AdminAuditLogs />} />
         </Routes>
       </div>
       {!isAdminPage && <Footer />}
