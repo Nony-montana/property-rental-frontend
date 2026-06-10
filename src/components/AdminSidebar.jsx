@@ -1,9 +1,8 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments } from "react-icons/fa";
+import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments, FaClipboardList } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { FaChartBar, FaUsers, FaHome, FaSignOutAlt, FaComments, FaClipboardList } from 'react-icons/fa';
 
 
 
